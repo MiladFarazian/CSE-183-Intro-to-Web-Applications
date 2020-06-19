@@ -1,0 +1,66 @@
+timestamp: 2020-04-01T21:31:02.668299
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "username" CHAR(512) UNIQUE,
+    "email" CHAR(512) UNIQUE,
+    "password" CHAR(512),
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "sso_id" CHAR(512),
+    "action_token" CHAR(512)
+);
+success!
+timestamp: 2020-04-01T21:31:02.706146
+CREATE TABLE "auth_user_tag_groups"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "path" CHAR(512),
+    "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2020-04-01T21:31:02.724097
+CREATE TABLE "person"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "job" CHAR(512)
+);
+success!
+timestamp: 2020-04-01T21:31:02.738785
+CREATE TABLE "superhero"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512),
+    "real_identity" INTEGER REFERENCES "person" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2020-04-01T21:31:02.755247
+CREATE TABLE "superpower"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "description" CHAR(512)
+);
+success!
+timestamp: 2020-04-01T21:31:02.772496
+CREATE TABLE "tag"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "superhero" INTEGER REFERENCES "superhero" ("id") ON DELETE CASCADE  ,
+    "superpower" INTEGER REFERENCES "superpower" ("id") ON DELETE CASCADE  ,
+    "strength" INTEGER
+);
+success!
+timestamp: 2020-04-29T22:12:36.506168
+ALTER TABLE "auth_user" ADD "phone_number" CHAR(512);
+timestamp: 2020-04-29T22:12:36.521241
+ALTER TABLE "auth_user" ADD "last_password_change" TIMESTAMP;
+success!
+timestamp: 2020-04-29T22:12:36.539402
+ALTER TABLE "person" ADD "resume" TEXT;
+success!
+timestamp: 2020-05-12T11:36:54.726850
+CREATE TABLE "product"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "product_name" CHAR(512),
+    "product_quantity" INTEGER,
+    "product_cost" DOUBLE,
+    "mail_order" CHAR(1),
+    "created_by" CHAR(512),
+    "creation_date" TIMESTAMP
+);
+success!

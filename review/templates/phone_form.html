@@ -1,0 +1,11 @@
+[[extend 'layout.html']]
+
+[[block page_menu_items]]
+<a class="navbar-item" href="[[=URL('index')]]">View Contacts</a>
+<a class="navbar-item" href="[[=URL('phone_numbers', contact_id)]]">View Phone Numbers</a>
+[[end]]
+
+<section class="section">
+  <h1 class="title">Phone Number</h1>
+  [[=form]]
+</section>
